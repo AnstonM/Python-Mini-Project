@@ -116,6 +116,8 @@ def GetParagraphs(AddSections): # FUNCTION TO GET THE DATA FOR THE SELECTED SECT
             for j in span2.find_next_siblings(): #FINDING CONSECUTIVE DATA
                 if j.name == 'h2': # BREAK IF THE SECTION GETS OVER
                     break 
+                if j.name == 'style':
+                    continue
                 text = text + " " + j.text #  ADDING TEXT TO THE PARA
                 # REMOVING UNWANTED TEXT USING REGULAR EXPRESSIONS
                 text = re.sub(r'\[.*\]','',text)
