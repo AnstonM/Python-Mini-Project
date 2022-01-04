@@ -45,6 +45,9 @@ def select():
     except:
         flash("Error in Retreiving the necessary data for your report, Try Again !!")
         return redirect(url_for('index'))
+    if len(sections) == 0:
+        flash("Data for "+topic+" not found on Wikipedia, Try Again !!")
+        return redirect(url_for('index'))
     form = SelectionForm()
     if form.validate_on_submit():
         f = request.form
