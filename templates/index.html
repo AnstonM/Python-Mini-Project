@@ -1,0 +1,171 @@
+{% extends "base.html" %}
+
+{% block navButton %}
+<a class="nav-link fa fa-power-off" href="/login">&nbsp;Log out</a>
+{% endblock %}
+{% block content1 %}
+    <div id="login">
+         <h3 class="title">Customise you Report !!! </h3>
+         <br>
+      <form action="{{ url_for('index') }}" method="POST" autocomplete="off" >
+        {{ form.csrf_token }}
+        <div class='row'>
+
+            <div class='col-6'>
+
+                <fieldset class="form-field">
+                    {{ form.topic.label }}<br>
+                    {{ form.topic}} 
+                    {% if form.topic.errors%}
+                        {% for error in form.topic.errors %}
+                            <div class="errors">&nbsp;{{ error }}</div>
+                            <style>
+                                #topic{border:2px red solid;}
+                                .errors{color: rgba(255, 0, 0, 0.781);}
+                            </style> 
+                    {% endfor %}
+                    {% endif %}       
+                </fieldset>
+
+                <br>
+
+                <fieldset class="form-field">
+                    {{ form.fileName.label }}<br>
+                    {{ form.fileName}} 
+                    {% if form.fileName.errors%}
+                        {% for error in form.fileName.errors %}
+                            <div class="errors">&nbsp;{{ error }}</div>
+                            <style>
+                                #fileName{border:2px red solid;}
+                                .errors{color: rgba(255, 0, 0, 0.781);}
+                            </style> 
+                    {% endfor %}
+                    {% endif %}       
+                </fieldset>
+
+                <br>
+
+                <fieldset class="form-field">
+                    {{ form.heading.label }}<br>
+                    {{ form.heading}} 
+                    {% if form.heading.errors%}
+                        {% for error in form.heading.errors %}
+                            <div class="errors">&nbsp;{{ error }}</div>
+                            <style>
+                                #heading{border:2px red solid;}
+                                .errors{color: rgba(255, 0, 0, 0.781);}
+                            </style> 
+                    {% endfor %}
+                    {% endif %}       
+                </fieldset>
+
+                <br>
+
+                <fieldset class="form-field">
+                    {{ form.yourName.label }}<br>
+                    {{ form.yourName}} 
+                    {% if form.yourName.errors%}
+                        {% for error in form.yourName.errors %}
+                            <div class="errors">&nbsp;{{ error }}</div>
+                            <style>
+                                #yourName{border:2px red solid;}
+                                .errors{color: rgba(255, 0, 0, 0.781);}
+                            </style> 
+                    {% endfor %}
+                    {% endif %}       
+                </fieldset> 
+
+                <br>
+                
+                <fieldset class="form-field">
+                    {{ form.usn.label }}<br>
+                    {{ form.usn}} 
+                    {% if form.usn.errors%}
+                        {% for error in form.usn.errors %}
+                            <div class="errors">&nbsp;{{ error }}</div>
+                            <style>
+                                #usn{border:2px red solid;}
+                                .errors{color: rgba(255, 0, 0, 0.781);}
+                            </style> 
+                    {% endfor %}
+                    {% endif %}       
+                </fieldset>          
+
+                <br><br>
+            </div>
+
+            <div class="col-6">
+
+                <fieldset class="form-field">
+                    {{ form.sectionSize.label }}&emsp;&emsp;{{form.bodySize.label}}<br>
+                    {{ form.sectionSize}} &emsp;&emsp;&ensp;{{form.bodySize}}     
+                </fieldset>
+
+                <br>
+                <br>
+
+                <fieldset class="form-field">
+                    {{ form.sectionAlignment.label }}&emsp;&emsp;{{ form.bodyAlignment.label }}
+                    {{ form.sectionAlignment}}&emsp;&emsp;&emsp;&nbsp;{{ form.bodyAlignment}}    
+                </fieldset>
+
+                <br>
+                <br>
+
+                <fieldset class="form-field">
+                    {{ form.color.label }}&emsp;&emsp;&emsp;&nbsp;
+                    {{ form.color}}      
+                </fieldset>
+
+                <br><br>
+
+                <fieldset class="form-field" id = "radio">
+                    {% for subfield in form.underline %}
+                        <div>{{ subfield }}<span>{{ subfield.label }}</span></div>
+                    {% endfor %}      
+                </fieldset>
+
+                <br>
+
+                {{ form.submit }}
+                
+
+            </div>
+
+
+
+        </div>
+        </form>
+    
+</div>
+    <style>
+ #container1{margin-top: 20PX;padding: 0%;}
+  input{border-radius: 8px;font-size: 1.2em;width: 60%;}
+  #login{margin-top: 30px; margin-left: -20px; border-radius: 20px; padding-left: 50px;padding-top: 30px;background-color: #212529;color: white;padding-bottom: 50px;}
+  .title{color: #F5F411;font-weight: 700;margin-left: -180px;background-color: #4285F4;padding-top: 10px;
+     padding-left: 180px;border-top-right-radius: 50px;border-bottom-right-radius: 50px; width: 105%;height: 60px;
+     border: 2px #F5F411 solid; border-left: 0px;} 
+  #submit{width: 70%;font-size: 1.2em;font-weight: 600;background-color: #4285F4;color: #F5F411;border: 2px white solid;}
+  #submit:hover{font-size: 1.3em;}
+  select{border-radius: 8px; font-size: 1.2em;}
+  #color {width: 30%;}
+  #sectionSize{width: 30%;}
+  #bodySize{width: 30%;}
+  #show{width: auto;}
+  #radio{margin-left: -130px;}
+  #radio div span{margin-left: -100px;}
+  #show span{font-size: 0.4em !important;}
+    </style>
+    <script type="text/javascript">function myFunction() {
+        var x = document.getElementById("password");
+        if (x.type === "password") {
+          x.type = "text";
+        } else {
+          x.type = "password";
+        }
+      }</script>
+{% endblock %}
+
+{% block content2 %}
+    <img id="loginImg" src="{{url_for('static',filename='images/login.png')}}" class="d-block " >
+{% endblock %}

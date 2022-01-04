@@ -1,0 +1,94 @@
+{% extends "loginbase.html" %}
+
+{% block navButton %}
+<a class="nav-link" href="/login">&nbsp;Back to Login</a>
+{% endblock %}
+{% block content1 %}
+    <div id="login">
+        <br>
+         <h3 class="title">Lets get you a WikiReaper Account !!! </h3>
+         <br>
+         <style>
+          #username{border:2px white solid;}
+          .errors{color: red;}
+        </style>
+      <form action="{{ url_for('index') }}" method="POST" autocomplete="off" >
+        {{ form.csrf_token }}
+        <fieldset class="form-field">
+        {{ form.username.label }}<br>
+        {{ form.username }}        
+        </fieldset>
+        {% if form.username.errors%}
+            {% for error in form.username.errors %}
+              <div class="errors">&nbsp;{{ error }}</div>
+              <style>
+                #username{border:2px red solid;}
+                .errors{color: rgba(255, 0, 0, 0.781);}
+              </style> 
+            {% endfor %}
+            {% endif %}
+        <br>
+        <fieldset class="form-field">
+          {{ form.password.label }}<br>
+          {{ form.password }}<br>
+          {% if form.password.errors%}
+            {% for error in form.password.errors %}
+              <div class="errors">&nbsp;{{ error }}</div>
+              <style>
+                #password{border:2px red solid;}
+                .errors{color: rgba(255, 0, 0, 0.781);}
+              </style> 
+            {% endfor %}
+          {% endif %}
+        </fieldset>
+        <br>
+        <fieldset class="form-field">
+            {{ form.confirmpassword.label }}<br>
+            {{ form.confirmpassword }}<br>
+            <input id="show" type="checkbox" onclick="myFunction()"><span>&nbsp;&nbsp;Show Password</span>
+            {% if form.confirmpassword.errors%}
+              {% for error in form.confirmpassword.errors %}
+                <div class="errors">&nbsp;{{ error }}</div>
+                <style>
+                  #confirmpassword{border:2px red solid;}
+                  .errors{color: rgba(255, 0, 0, 0.781);}
+                </style> 
+              {% endfor %}
+            {% endif %}
+          </fieldset>     
+        <br><br>
+        {{ form.submit }}
+        </form>
+    
+</div>
+<style>
+    #container1{margin-top: 20PX;padding: 0%;}
+     input{border-radius: 8px;font-size: 1.2em;width: 30%;}
+     #login{margin-top: 30px; margin-left: -20px; border-radius: 20px; padding-left: 150px;padding-top: 30px;background-color: #212529;color: white;padding-bottom: 50px;}
+     .title{color: #F5F411;font-weight: 700;margin-left: -180px;background-color: #4285F4;padding-top: 10px;
+        padding-left: 150px;border-top-right-radius: 50px;border-bottom-right-radius: 50px; width: 105%;height: 60px;
+        border: 2px #F5F411 solid; border-left: 0px;} 
+     #submit{width: 30%;font-size: 1.2em;font-weight: 600;background-color: #4285F4;color: #F5F411;border: 2px white solid;}
+     #submit:hover{font-size: 1.3em;}
+     #show{width: auto;}
+     #show span{font-size: 0.4em !important;}
+       </style>
+    <script type="text/javascript">function myFunction() {
+        var x = document.getElementById("password");
+        if (x.type === "password") {
+          x.type = "text";
+        } else {
+          x.type = "password";
+        }
+        var x = document.getElementById("confirmpassword");
+        if (x.type === "password") {
+          x.type = "text";
+        } else {
+          x.type = "password";
+        }
+      }</script>
+{% endblock %}
+
+{% block content2 %}
+    <img id="loginImg" src="{{url_for('static',filename='images/login.png')}}" class="d-block " >
+{% endblock %}
