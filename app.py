@@ -40,20 +40,36 @@ def index():
 @app.route('/select', methods=("GET","POST")) # TO RENDER SELECTION PAGE
 def select():
     global topic,fileName,heading,yourName,usn,sectionSize,bodySize,sectionAlignment,bodyAlignment,color,underline
-    max,sections = GetSections(topic)
+    try:
+        max,sections = GetSections(topic)
+    except:
+        flash("Error in Retreiving the necessary data for your report, Try Again !!")
+        return redirect(url_for('index'))
     form = SelectionForm()
     if form.validate_on_submit():
         f = request.form
         select = f['select']
-        Addsection = GetSelection(max,sections,select)
+        try:
+            Addsection = GetSelection(max,sections,select)
+        except:
+            flash("Error in Selection, Check your Input...")
+            return redirect(url_for('select'))
         if Addsection == [-1]:
             flash("Error in Selection, Check your Input...")
             return redirect(url_for('select'))
-        headings,paragraphs = GetParagraphs(Addsection)
+        try:
+            headings,paragraphs = GetParagraphs(Addsection)
+        except:
+            flash("Error in Retreiving the necessary data for your report, Try Again !!")
+            return redirect(url_for('index'))
         if paragraphs == [-1] or headings == [-1]:
             flash("Error in Retreiving the necessary data for your report, Try Again !!")
             return redirect(url_for('index'))
-        MakeReport(headings,paragraphs,fileName,heading,yourName,usn,sectionAlignment,bodyAlignment,color,underline,sectionSize,bodySize)
+        try:
+            MakeReport(headings,paragraphs,fileName,heading,yourName,usn,sectionAlignment,bodyAlignment,color,underline,sectionSize,bodySize)
+        except:
+            flash("Error in creating your report, Try Again !!")
+            return redirect(url_for('index'))
         flash("Your Report Has been Successfully Created and downloaded to your Desktop , Enjoy !!!")
         return redirect(url_for('index'))
     else:
