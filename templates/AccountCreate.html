@@ -12,7 +12,7 @@
           #username{border:2px white solid;}
           .errors{color: red;}
         </style>
-      <form action="{{ url_for('index') }}" method="POST" autocomplete="off" >
+      <form action="{{ url_for('CreateAccount') }}" method="POST" autocomplete="off" >
         {{ form.csrf_token }}
         <fieldset class="form-field">
         {{ form.username.label }}<br>
