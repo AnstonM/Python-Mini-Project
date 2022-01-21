@@ -16,7 +16,7 @@ app = Flask(__name__)
 SECRET_KEY = os.urandom(32)
 app.config['SECRET_KEY'] = SECRET_KEY
 
-@app.route('/index', methods=("GET","POST")) #TO RENDER INDEX PAGE
+@app.route('/index', methods=("GET","POST")) # TO RENDER INDEX PAGE
 def index():
     global topic,fileName,heading,yourName,usn,sectionSize,bodySize,sectionAlignment,bodyAlignment,color,underline
     form = WikiReaperForm()
