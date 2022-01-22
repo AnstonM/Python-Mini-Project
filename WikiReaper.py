@@ -65,7 +65,7 @@ def GetSections(essay): # FUNCTION TO GET THE CONTENTS OF THE TOPIC SELECTED
     #RETURNS MAX AND SECTION LIST      
     return max, sections
 
-def GetSelection(max,sections,select1): # FUNCTION TO FIND THE SELECTED SECTIONS FROM THE INPUT STRING
+def GetSelection(max,sections,select1): # FUNCTION TO FIND THE SELECTED SECTIONS FROM THE INPUT STRING  1,5-8
     select = [] # LIST TO STORE THE SELECTED INDEXES
     try: # EXCEPTION HANDLING FOR ANY ERRORS
         if ',' in select1:
